@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="newShamilModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="newShamilEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Prod" EntityType="newShamilModel.Prod" />
+    <EntitySet Name="Prod2" EntityType="newShamilModel.Prod2" />
+    <EntitySet Name="Sotrudniki" EntityType="newShamilModel.Sotrudniki" />
+    <EntitySet Name="Special" EntityType="newShamilModel.Special" />
+    <EntitySet Name="sysdiagrams" EntityType="newShamilModel.sysdiagrams" />
+    <EntitySet Name="Type" EntityType="newShamilModel.Type" />
+    <EntitySet Name="Type2" EntityType="newShamilModel.Type2" />
+    <EntitySet Name="User" EntityType="newShamilModel.User" />
+    <EntitySet Name="Usluga" EntityType="newShamilModel.Usluga" />
+    <EntitySet Name="Zakazi" EntityType="newShamilModel.Zakazi" />
+    <EntitySet Name="Realiz" EntityType="newShamilModel.Realiz" />
+    <AssociationSet Name="FK_Prod_Type" Association="newShamilModel.FK_Prod_Type">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Prod" EntitySet="Prod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sotrudniki_Special" Association="newShamilModel.FK_Sotrudniki_Special">
+      <End Role="Special" EntitySet="Special" />
+      <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakazi_Sotrudniki" Association="newShamilModel.FK_Zakazi_Sotrudniki">
+      <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+      <End Role="Zakazi" EntitySet="Zakazi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usluga_Type" Association="newShamilModel.FK_Usluga_Type">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Usluga" EntitySet="Usluga" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakazi_Usluga" Association="newShamilModel.FK_Zakazi_Usluga">
+      <End Role="Usluga" EntitySet="Usluga" />
+      <End Role="Zakazi" EntitySet="Zakazi" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Prod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tipe" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Kolich" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Itogo" Type="Int32" Nullable="false" />
+    <Property Name="Otvet" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Type" Relationship="newShamilModel.FK_Prod_Type" FromRole="Prod" ToRole="Type" />
+  </EntityType>
+  <EntityType Name="Prod2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tipe" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Kolich" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Itogo" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sotrudniki">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdSpecial" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Special" Relationship="newShamilModel.FK_Sotrudniki_Special" FromRole="Sotrudniki" ToRole="Special" />
+    <NavigationProperty Name="Zakazi" Relationship="newShamilModel.FK_Zakazi_Sotrudniki" FromRole="Sotrudniki" ToRole="Zakazi" />
+  </EntityType>
+  <EntityType Name="Special">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Sotrudniki" Relationship="newShamilModel.FK_Sotrudniki_Special" FromRole="Special" ToRole="Sotrudniki" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Prod" Relationship="newShamilModel.FK_Prod_Type" FromRole="Type" ToRole="Prod" />
+    <NavigationProperty Name="Usluga" Relationship="newShamilModel.FK_Usluga_Type" FromRole="Type" ToRole="Usluga" />
+  </EntityType>
+  <EntityType Name="Type2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Usluga">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdType" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Type" Relationship="newShamilModel.FK_Usluga_Type" FromRole="Usluga" ToRole="Type" />
+    <NavigationProperty Name="Zakazi" Relationship="newShamilModel.FK_Zakazi_Usluga" FromRole="Usluga" ToRole="Zakazi" />
+  </EntityType>
+  <EntityType Name="Zakazi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsluga" Type="Int32" Nullable="false" />
+    <Property Name="IdSotrudniki" Type="Int32" Nullable="false" />
+    <Property Name="Data" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Zakazchik" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Sotrudniki" Relationship="newShamilModel.FK_Zakazi_Sotrudniki" FromRole="Zakazi" ToRole="Sotrudniki" />
+    <NavigationProperty Name="Usluga" Relationship="newShamilModel.FK_Zakazi_Usluga" FromRole="Zakazi" ToRole="Usluga" />
+  </EntityType>
+  <EntityType Name="Realiz">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Tipe" />
+      <PropertyRef Name="Price" />
+      <PropertyRef Name="Kolich" />
+      <PropertyRef Name="Itogo" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tipe" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Kolich" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Itogo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Prod_Type">
+    <End Type="newShamilModel.Type" Role="Type" Multiplicity="1" />
+    <End Type="newShamilModel.Prod" Role="Prod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Prod">
+        <PropertyRef Name="Tipe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sotrudniki_Special">
+    <End Type="newShamilModel.Special" Role="Special" Multiplicity="1" />
+    <End Type="newShamilModel.Sotrudniki" Role="Sotrudniki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Special">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sotrudniki">
+        <PropertyRef Name="IdSpecial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakazi_Sotrudniki">
+    <End Type="newShamilModel.Sotrudniki" Role="Sotrudniki" Multiplicity="1" />
+    <End Type="newShamilModel.Zakazi" Role="Zakazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sotrudniki">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Zakazi">
+        <PropertyRef Name="IdSotrudniki" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usluga_Type">
+    <End Type="newShamilModel.Type" Role="Type" Multiplicity="1" />
+    <End Type="newShamilModel.Usluga" Role="Usluga" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usluga">
+        <PropertyRef Name="IdType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakazi_Usluga">
+    <End Type="newShamilModel.Usluga" Role="Usluga" Multiplicity="1" />
+    <End Type="newShamilModel.Zakazi" Role="Zakazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usluga">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Zakazi">
+        <PropertyRef Name="IdUsluga" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

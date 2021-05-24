@@ -1,0 +1,74 @@
+﻿<Page x:Class="Dipllom.PageMain.Dobavka"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Dipllom.PageMain"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Dobavka">
+
+    <Grid>
+        <StackPanel 
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Orientation="Horizontal">
+            
+            <Button
+                Margin="5"
+                Width="120"
+                Height="40"
+                Content="Назад"
+                Click="Button_Click"/>
+        </StackPanel>
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <StackPanel
+                Margin="5"
+                Orientation="Horizontal">
+                <TextBlock
+                    Width="150"
+                    Text="Введите название услуги:"
+                    />
+                <TextBox
+                    Name="TxbNameUslugi"/>
+            </StackPanel>
+            <StackPanel 
+                Margin="5"
+                Orientation="Horizontal">
+                <TextBlock
+                    Width="150"
+                    Text="Выберите тип:"
+                    />
+                <ComboBox
+                    Name="CmbType"
+                    Width="150"
+                    />
+            </StackPanel>
+            <StackPanel 
+                Margin="5"
+                Orientation="Horizontal">
+                <TextBlock
+                    Width="150"
+                    Text="Стоимость услуги:"/>
+                <TextBox
+                    Name="TxbPrice"
+                    />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button
+                    Name="BtnAddUslugi"
+                    Click="BtnAddUslugi_Click"
+                    Margin="0,50,0,0"
+                    Style="{StaticResource UppButton}"
+                    Width="170"
+                    Height="40"
+                    Content="Добавить"
+                    />
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Page>

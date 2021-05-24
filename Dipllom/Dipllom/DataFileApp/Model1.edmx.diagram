@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="43cf1acd471444dfa48a23af2e339870" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="newShamilModel.Prod" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="newShamilModel.Prod2" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="newShamilModel.Sotrudniki" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="newShamilModel.Special" Width="1.5" PointX="0.75" PointY="8.5" />
+        <EntityTypeShape EntityType="newShamilModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="newShamilModel.Type" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="newShamilModel.Type2" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="newShamilModel.User" Width="1.5" PointX="5.75" PointY="7.75" />
+        <EntityTypeShape EntityType="newShamilModel.Usluga" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="newShamilModel.Zakazi" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="newShamilModel.Realiz" Width="1.5" PointX="7.75" PointY="6.75" />
+        <AssociationConnector Association="newShamilModel.FK_Prod_Type" />
+        <AssociationConnector Association="newShamilModel.FK_Sotrudniki_Special" />
+        <AssociationConnector Association="newShamilModel.FK_Zakazi_Sotrudniki" />
+        <AssociationConnector Association="newShamilModel.FK_Usluga_Type" />
+        <AssociationConnector Association="newShamilModel.FK_Zakazi_Usluga" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

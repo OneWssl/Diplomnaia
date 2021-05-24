@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище newShamilModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Prod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipe" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Kolich" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Itogo" Type="int" Nullable="false" />
+          <Property Name="Otvet" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prod2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipe" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Kolich" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Itogo" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "newShamil.dbo.Realiz" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Realiz">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Tipe" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Kolich" />
+            <PropertyRef Name="Itogo" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipe" Type="int" Nullable="false" />
+          <Property Name="Price" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Kolich" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Itogo" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdSpecial" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Special">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usluga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zakazi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsluga" Type="int" Nullable="false" />
+          <Property Name="IdSotrudniki" Type="int" Nullable="false" />
+          <Property Name="Data" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Zakazchik" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Prod_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="Prod" Type="Self.Prod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prod">
+              <PropertyRef Name="Tipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudniki_Special">
+          <End Role="Special" Type="Self.Special" Multiplicity="1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Special">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="IdSpecial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usluga_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usluga">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zakazi_Sotrudniki">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="1" />
+          <End Role="Zakazi" Type="Self.Zakazi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zakazi">
+              <PropertyRef Name="IdSotrudniki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zakazi_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1" />
+          <End Role="Zakazi" Type="Self.Zakazi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zakazi">
+              <PropertyRef Name="IdUsluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище newShamilModelContainer">
+          <EntitySet Name="Prod" EntityType="Self.Prod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prod2" EntityType="Self.Prod2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Special" EntityType="Self.Special" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type2" EntityType="Self.Type2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usluga" EntityType="Self.Usluga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zakazi" EntityType="Self.Zakazi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Realiz" EntityType="Self.Realiz" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Realiz].[Id] AS [Id], 
+    [Realiz].[Name] AS [Name], 
+    [Realiz].[Tipe] AS [Tipe], 
+    [Realiz].[Price] AS [Price], 
+    [Realiz].[Kolich] AS [Kolich], 
+    [Realiz].[Itogo] AS [Itogo]
+    FROM [dbo].[Realiz] AS [Realiz]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Prod_Type" Association="Self.FK_Prod_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Prod" EntitySet="Prod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudniki_Special" Association="Self.FK_Sotrudniki_Special">
+            <End Role="Special" EntitySet="Special" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usluga_Type" Association="Self.FK_Usluga_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Usluga" EntitySet="Usluga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zakazi_Sotrudniki" Association="Self.FK_Zakazi_Sotrudniki">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Zakazi" EntitySet="Zakazi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zakazi_Usluga" Association="Self.FK_Zakazi_Usluga">
+            <End Role="Usluga" EntitySet="Usluga" />
+            <End Role="Zakazi" EntitySet="Zakazi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="newShamilModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="newShamilEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Prod" EntityType="newShamilModel.Prod" />
+          <EntitySet Name="Prod2" EntityType="newShamilModel.Prod2" />
+          <EntitySet Name="Sotrudniki" EntityType="newShamilModel.Sotrudniki" />
+          <EntitySet Name="Special" EntityType="newShamilModel.Special" />
+          <EntitySet Name="sysdiagrams" EntityType="newShamilModel.sysdiagrams" />
+          <EntitySet Name="Type" EntityType="newShamilModel.Type" />
+          <EntitySet Name="Type2" EntityType="newShamilModel.Type2" />
+          <EntitySet Name="User" EntityType="newShamilModel.User" />
+          <EntitySet Name="Usluga" EntityType="newShamilModel.Usluga" />
+          <EntitySet Name="Zakazi" EntityType="newShamilModel.Zakazi" />
+          <EntitySet Name="Realiz" EntityType="newShamilModel.Realiz" />
+          <AssociationSet Name="FK_Prod_Type" Association="newShamilModel.FK_Prod_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Prod" EntitySet="Prod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudniki_Special" Association="newShamilModel.FK_Sotrudniki_Special">
+            <End Role="Special" EntitySet="Special" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zakazi_Sotrudniki" Association="newShamilModel.FK_Zakazi_Sotrudniki">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Zakazi" EntitySet="Zakazi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usluga_Type" Association="newShamilModel.FK_Usluga_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Usluga" EntitySet="Usluga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zakazi_Usluga" Association="newShamilModel.FK_Zakazi_Usluga">
+            <End Role="Usluga" EntitySet="Usluga" />
+            <End Role="Zakazi" EntitySet="Zakazi" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Prod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tipe" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Kolich" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Itogo" Type="Int32" Nullable="false" />
+          <Property Name="Otvet" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Type" Relationship="newShamilModel.FK_Prod_Type" FromRole="Prod" ToRole="Type" />
+        </EntityType>
+        <EntityType Name="Prod2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tipe" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Kolich" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Itogo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdSpecial" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Special" Relationship="newShamilModel.FK_Sotrudniki_Special" FromRole="Sotrudniki" ToRole="Special" />
+          <NavigationProperty Name="Zakazi" Relationship="newShamilModel.FK_Zakazi_Sotrudniki" FromRole="Sotrudniki" ToRole="Zakazi" />
+        </EntityType>
+        <EntityType Name="Special">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sotrudniki" Relationship="newShamilModel.FK_Sotrudniki_Special" FromRole="Special" ToRole="Sotrudniki" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Prod" Relationship="newShamilModel.FK_Prod_Type" FromRole="Type" ToRole="Prod" />
+          <NavigationProperty Name="Usluga" Relationship="newShamilModel.FK_Usluga_Type" FromRole="Type" ToRole="Usluga" />
+        </EntityType>
+        <EntityType Name="Type2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Usluga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Type" Relationship="newShamilModel.FK_Usluga_Type" FromRole="Usluga" ToRole="Type" />
+          <NavigationProperty Name="Zakazi" Relationship="newShamilModel.FK_Zakazi_Usluga" FromRole="Usluga" ToRole="Zakazi" />
+        </EntityType>
+        <EntityType Name="Zakazi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsluga" Type="Int32" Nullable="false" />
+          <Property Name="IdSotrudniki" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zakazchik" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sotrudniki" Relationship="newShamilModel.FK_Zakazi_Sotrudniki" FromRole="Zakazi" ToRole="Sotrudniki" />
+          <NavigationProperty Name="Usluga" Relationship="newShamilModel.FK_Zakazi_Usluga" FromRole="Zakazi" ToRole="Usluga" />
+        </EntityType>
+        <EntityType Name="Realiz">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Tipe" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Kolich" />
+            <PropertyRef Name="Itogo" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tipe" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Kolich" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Itogo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Prod_Type">
+          <End Type="newShamilModel.Type" Role="Type" Multiplicity="1" />
+          <End Type="newShamilModel.Prod" Role="Prod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prod">
+              <PropertyRef Name="Tipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudniki_Special">
+          <End Type="newShamilModel.Special" Role="Special" Multiplicity="1" />
+          <End Type="newShamilModel.Sotrudniki" Role="Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Special">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="IdSpecial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zakazi_Sotrudniki">
+          <End Type="newShamilModel.Sotrudniki" Role="Sotrudniki" Multiplicity="1" />
+          <End Type="newShamilModel.Zakazi" Role="Zakazi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zakazi">
+              <PropertyRef Name="IdSotrudniki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usluga_Type">
+          <End Type="newShamilModel.Type" Role="Type" Multiplicity="1" />
+          <End Type="newShamilModel.Usluga" Role="Usluga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usluga">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zakazi_Usluga">
+          <End Type="newShamilModel.Usluga" Role="Usluga" Multiplicity="1" />
+          <End Type="newShamilModel.Zakazi" Role="Zakazi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zakazi">
+              <PropertyRef Name="IdUsluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище newShamilModelContainer" CdmEntityContainer="newShamilEntities">
+          <EntitySetMapping Name="Prod">
+            <EntityTypeMapping TypeName="newShamilModel.Prod">
+              <MappingFragment StoreEntitySet="Prod">
+                <ScalarProperty Name="Otvet" ColumnName="Otvet" />
+                <ScalarProperty Name="Itogo" ColumnName="Itogo" />
+                <ScalarProperty Name="Kolich" ColumnName="Kolich" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Tipe" ColumnName="Tipe" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prod2">
+            <EntityTypeMapping TypeName="newShamilModel.Prod2">
+              <MappingFragment StoreEntitySet="Prod2">
+                <ScalarProperty Name="Itogo" ColumnName="Itogo" />
+                <ScalarProperty Name="Kolich" ColumnName="Kolich" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Tipe" ColumnName="Tipe" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudniki">
+            <EntityTypeMapping TypeName="newShamilModel.Sotrudniki">
+              <MappingFragment StoreEntitySet="Sotrudniki">
+                <ScalarProperty Name="IdSpecial" ColumnName="IdSpecial" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Special">
+            <EntityTypeMapping TypeName="newShamilModel.Special">
+              <MappingFragment StoreEntitySet="Special">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="newShamilModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type">
+            <EntityTypeMapping TypeName="newShamilModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type2">
+            <EntityTypeMapping TypeName="newShamilModel.Type2">
+              <MappingFragment StoreEntitySet="Type2">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="newShamilModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usluga">
+            <EntityTypeMapping TypeName="newShamilModel.Usluga">
+              <MappingFragment StoreEntitySet="Usluga">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zakazi">
+            <EntityTypeMapping TypeName="newShamilModel.Zakazi">
+              <MappingFragment StoreEntitySet="Zakazi">
+                <ScalarProperty Name="Zakazchik" ColumnName="Zakazchik" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="IdSotrudniki" ColumnName="IdSotrudniki" />
+                <ScalarProperty Name="IdUsluga" ColumnName="IdUsluga" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Realiz">
+            <EntityTypeMapping TypeName="newShamilModel.Realiz">
+              <MappingFragment StoreEntitySet="Realiz">
+                <ScalarProperty Name="Itogo" ColumnName="Itogo" />
+                <ScalarProperty Name="Kolich" ColumnName="Kolich" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Tipe" ColumnName="Tipe" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
